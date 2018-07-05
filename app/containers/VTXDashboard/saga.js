@@ -56,7 +56,8 @@ export function* transfer(action) {
     .transfer(toAddress, amount, { from: account });
   const transactionLog = result.logs[0];
 
-  yield put(transferSuccess(transactionLog))
+  transactionLog.id = transactionLog.transactionHash;
+  yield put(transferSuccess(transactionLog));
 }
 
 export function* loadAccountAndBalance() {
