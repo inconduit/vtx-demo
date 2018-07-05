@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import VTXDashboard from 'containers/VTXDashboard/index';
 import './style.scss';
 
 const App = () => (
@@ -23,6 +24,7 @@ const App = () => (
     </Helmet>
 
     <Switch>
+      <Route path="" component={VTXDashboard} />
       <Route path="" component={NotFoundPage} />
     </Switch>
   </div>
