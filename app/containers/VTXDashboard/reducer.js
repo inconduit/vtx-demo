@@ -28,10 +28,14 @@ function dashboardReducer(state = initialState, action) {
 
      case TRANSFER_SUCCESS:
       const { transactionLog } = action
+      const amount = transactionLog.args.value
+      const newBalance = state.get('tokenBalance').minus(amount)
 
       return state
+        .set('tokenBalance', newBalance)
         .update('transactionLogs',
           transactionLogs => transactionLogs.push(transactionLog))
+        break;
 
     default:
       return state;
