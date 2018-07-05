@@ -14,6 +14,7 @@ import {
 import {
   makeSelectAccount,
   makeSelectTokenBalance,
+  makeSelectTokenDecimals,
   makeSelectTransactionLogs
 } from './selectors';
 
@@ -24,7 +25,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = createStructuredSelector({
   account: makeSelectAccount(),
-  tokenBalance: makeSelectTokenBalance(),
+  balance: makeSelectTokenBalance(),
+  decimals: makeSelectTokenDecimals(),
   transactionLogs: makeSelectTransactionLogs()
 });
 
