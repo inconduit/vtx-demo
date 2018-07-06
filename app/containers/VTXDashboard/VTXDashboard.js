@@ -14,7 +14,11 @@ class VTXDashboard extends PureComponent {
   }
 
   handleSubmit(formValues) {
-    this.props.transfer(formValues.toAddress, formValues.amount)
+    // the input amount is assumed to be the human readable value so we
+    // convert by multiplying by the decimal places defined by the token
+    const { decimals } = this.props;
+    const amount = formValues.amount * Math.pow(10, decimals)
+    this.props.transfer(formValues.toAddress, amount);
   }
 
   render () {
