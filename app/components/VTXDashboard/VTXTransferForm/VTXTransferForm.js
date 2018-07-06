@@ -1,35 +1,54 @@
 import React  from 'react';
-import { Form, Field } from 'react-final-form'
+import { Form, Field } from 'react-final-form';
+import { Button, Box, Col, Input, Row } from 'smooth-ui';
+import './style.scss';
 
 const VTXTransferForm = (props) => (
-  <Form
-    onSubmit={props.onSubmit}
-    validate={validate}
-    render={({ handleSubmit, pristine, invalid }) => (
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Amount
-          </label>
+  <div>
+    <h2 className='header'>
+      Transfer VTX
+    </h2>
 
-          <Field name="amount" type="number" component="input" placeholder="Amount" />
-        </div>
+    <Form
+      onSubmit={props.onSubmit}
+      validate={validate}
+      render={({ handleSubmit, pristine, invalid }) => (
+        <form onSubmit={handleSubmit}>
+          <Row className='row'>
+            <Col>
+              <Field className="input" name="amount" type="number" component={AdaptedInput} placeholder="Amount" />
+            </Col>
+          </Row>
 
-        <div>
-          <label>
-            Recipient
-          </label>
+          <Row className='row'>
+            <Col>
+              <Field className="input" name="toAddress" component={AdaptedInput} placeholder="Recipient" />
+            </Col>
+          </Row>
 
-          <Field name="toAddress" component="input" placeholder="Recipient" />
-        </div>
+          <Row className='row'>
+            <Col />
 
-        <button type="submit" disabled={pristine || invalid}>
-          Send
-        </button>
-      </form>
-    )}
-  />
+            <Col xs={4}>
+              <Button className="submitButton" type="submit" variant="dark" disabled={pristine || invalid}>
+                Send
+              </Button>
+            </Col>
+
+            <Col />
+          </Row>
+        </form>
+      )}
+    />
+  </div>
 )
+
+const adapt = Component => ({
+  input,
+  meta: { valid },
+  ...rest
+}) => <Component {...input} {...rest} valid={valid} />;
+const AdaptedInput = adapt(Input);
 
 const validate = (formValues) => {
   return {
@@ -37,5 +56,6 @@ const validate = (formValues) => {
     toAddress: formValues.toAddress === undefined ? {error: 'required'} : {}
   }
 }
+
 
 export default VTXTransferForm;
