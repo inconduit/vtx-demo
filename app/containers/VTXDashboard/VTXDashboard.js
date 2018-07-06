@@ -4,6 +4,7 @@ import VTXAddress from '../../components/VTXDashboard/VTXAddress';
 import VTXBalance from '../../components/VTXDashboard/VTXBalance';
 import VTXTransferForm from '../../components/VTXDashboard/VTXTransferForm';
 import VTXTransactionList from '../../components/VTXDashboard/VTXTransactionList';
+import './styles.scss';
 
 class VTXDashboard extends PureComponent {
   componentDidMount() {
@@ -22,15 +23,17 @@ class VTXDashboard extends PureComponent {
 
     return (
       <div>
-        <VTXAddress address={account} />
+        <div className="main-wrapper">
+          <VTXAddress address={account} />
 
-        <VTXBalance
-          balance={balance}
-          decimals={decimals} />
+          <VTXBalance
+            balance={balance}
+            decimals={decimals} />
 
-        <VTXTransferForm onSubmit={this.handleSubmit} />
+          <VTXTransferForm onSubmit={this.handleSubmit} />
+        </div>
 
-        <VTXTransactionList items={transactionsArray} />
+        <VTXTransactionList items={transactionsArray} decimals={decimals} />
       </div>
     )
   }
