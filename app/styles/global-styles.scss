@@ -18,8 +18,11 @@ body.fontLoaded {
   min-width: 100%;
 }
 
-p,
-label {
-  font-family: Georgia, Times, 'Times New Roman', serif;
-  line-height: 1.5em;
+h2 {
+  margin-bottom: 0em;
+}
+
+h4 {
+  margin-top: 0.5em;
+  color: #555;
 }
